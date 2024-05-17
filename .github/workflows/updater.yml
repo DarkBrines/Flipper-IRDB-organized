@@ -1,4 +1,4 @@
-name: update
+name: Organize
 
 on:
   schedule:
@@ -38,4 +38,9 @@ jobs:
         uses: actions4git/add-commit-push@v1
         with:
           path: ./self
-          commit-message: "Auto-update-${{ steps.date.outputs.date }}"
+          commit-message: "Auto-update ${{ steps.date.outputs.date }}"
+
+      - name: Add the artifact
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          path: ./self
