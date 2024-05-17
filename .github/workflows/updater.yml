@@ -1,0 +1,34 @@
+name: update
+
+on:
+  schedule:
+    - cron: 0 12 * * *
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+        with:
+          path: self
+
+      - name: Checkout Lucaslhm/Flipper-IRDB
+        uses: actions/checkout@v4
+        with:
+          path: Flipper-IRDB
+          repository: Lucaslhm/Flipper-IRDB
+
+      - name: Setup Python
+        uses: actions/setup-python@v5.1.0
+
+      - name: Run script
+        run: python3 self/.github/workflows/main.py ./Flipper-IRDB ./self
+
+      - name: Push changes
+        uses: actions4git/add-commit-push@v1
+        with:
+          path: ./self
+          commit-message: Auto-update ${{ steps.date.outputs.date }}
