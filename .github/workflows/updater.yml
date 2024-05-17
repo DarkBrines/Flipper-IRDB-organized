@@ -22,7 +22,7 @@ jobs:
           repository: Lucaslhm/Flipper-IRDB
 
       - name: Check if the repo updated
-      - run: |
+        run: |
           cd Flipper-IRDB
           git log -1 --pretty=%H > ../irdb_commit.sha
           cmp -s ../irdbhash.txt ./self/.github/workflows/irdb_commit.sha || exit 0
