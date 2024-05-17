@@ -31,4 +31,4 @@ jobs:
         uses: actions4git/add-commit-push@v1
         with:
           path: ./self
-          commit-message: Auto-update ${{ steps.date.outputs.date }}
+          commit-message: "Auto-update ${{ steps.date.outputs.date }}"
