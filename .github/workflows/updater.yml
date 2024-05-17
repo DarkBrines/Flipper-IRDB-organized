@@ -8,6 +8,7 @@ on:
 jobs:
   organize:
     runs-on: ubuntu-latest
+    continue-on-error: true # Because step 3 will errors out if there is no new commits
 
     steps:
       - name: Checkout this repo
