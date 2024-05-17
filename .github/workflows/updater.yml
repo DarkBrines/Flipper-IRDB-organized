@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  organize:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,6 +21,8 @@ jobs:
           path: Flipper-IRDB
           repository: Lucaslhm/Flipper-IRDB
 
+      - name: Check new commits
+
       - name: Setup Python
         uses: actions/setup-python@v5.1.0
 
@@ -31,4 +33,4 @@ jobs:
         uses: actions4git/add-commit-push@v1
         with:
           path: ./self
-          commit-message: "Auto-update ${{ steps.date.outputs.date }}"
+          commit-message: "Auto-update-${{ steps.date.outputs.date }}"
