@@ -21,7 +21,11 @@ jobs:
           path: Flipper-IRDB
           repository: Lucaslhm/Flipper-IRDB
 
-      - name: Check new commits
+      - name: Check if the repo updated
+      - run: |
+          cd Flipper-IRDB
+          git log -1 --pretty=%H > ../irdb_commit.sha
+          cmp -s ../irdbhash.txt ./self/.github/workflows/irdb_commit.sha || exit 0
 
       - name: Setup Python
         uses: actions/setup-python@v5.1.0
