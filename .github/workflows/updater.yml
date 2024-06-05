@@ -24,9 +24,17 @@ jobs:
 
       - name: Check if the repo updated
         run: |
+          set +e
           cd Flipper-IRDB
           git log -1 --pretty=%H > ../irdb_commit.sha
-          cmp -s ../irdbhash.txt ./self/.github/workflows/irdb_commit.sha
+          cmp -s ../irdb_commit.sha ./self/.github/workflows/irdb_commit.sha
+          echo "NEW_COMMIT_PUSHED=$?" >> $GITHUB_ENV
+
+      - name: Exits if repo is not updated
+        if: (( ${{ env.NEW_COMMIT_PUSHED }} != 1 ))
+        run: |
+          echo $NEW_COMMIT_PUSHED
+          exit 1
 
       - name: Setup Python
         uses: actions/setup-python@v5.1.0
