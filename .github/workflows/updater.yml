@@ -31,7 +31,7 @@ jobs:
           echo "NEW_COMMIT_PUSHED=$?" >> $GITHUB_ENV
 
       - name: Exits if repo is not updated
-        if: (( ${{ env.NEW_COMMIT_PUSHED }} != 1 ))
+        if: ${{ env.NEW_COMMIT_PUSHED != '1' }}
         run: |
           echo $NEW_COMMIT_PUSHED
           exit 1
