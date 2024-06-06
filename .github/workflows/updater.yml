@@ -42,6 +42,11 @@ jobs:
       - name: Run script
         run: python3 self/.github/workflows/main.py ./Flipper-IRDB ./self
 
+      - name: Update HEAD index
+        run: |
+          cd Flipper-IRDB
+          git log -1 --pretty=%H > ../self/.github/workflows/irdb_commit.sha
+
       - name: Commit changes
         run: |
           cd self
