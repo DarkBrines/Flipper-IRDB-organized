@@ -27,7 +27,7 @@ jobs:
           set +e
           cd Flipper-IRDB
           git log -1 --pretty=%H > ../irdb_commit.sha
-          cmp -s ../irdb_commit.sha ../self/.github/workflows/irdb_commit.sha
+          cmp -s ../irdb_commit.sha ../self/.irdb_commit.sha
           echo "NEW_COMMIT_PUSHED=$?" >> $GITHUB_ENV
 
       - name: Exits if repo is up-to-date
@@ -45,7 +45,7 @@ jobs:
       - name: Update HEAD index
         run: |
           cd Flipper-IRDB
-          git log -1 --pretty=%H > ../self/.github/workflows/irdb_commit.sha
+          git log -1 --pretty=%H > ../self/.irdb_commit.sha
 
       - name: Commit changes
         run: |
